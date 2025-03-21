@@ -29,4 +29,66 @@ class DoubleLL{
         }
         System.out.println("null");
     }
+
+    //delete methods
+    public Node deleteAtbeginning(Node head){
+        if(head == null || head.next == null){
+            return null;
+        }
+        Node prev = head;
+        head = head.next;
+        head.back = null;
+        prev.next = null;
+        return head;
+    }
+
+    public Node deleteAtEnd(Node head){
+         if(head == null || head.next == null){
+            return null;
+        }
+        Node tail = head;
+        while(tail.next != null){
+            tail = tail.next;
+        }
+        Node prevToLast = tail.back;
+        tail.back = null;
+        prevToLast.next = null;
+        return head;
+    }
+
+    public Node deleteAtpos(Node head,int pos){
+        if(head == null)
+            return null;
+        Node currNode = head;
+        int count = 0;
+        while(currNode != null){
+            count++;
+            if(count == pos){
+               
+                break;
+            }
+            currNode = currNode.next;
+        }
+        Node prevNode = currNode.back;
+        Node nextNode = currNode.next;
+        if(prevNode == null && nextNode == null){
+                head = null;
+        }else if(prevNode == null){
+            currNode.next = null;
+            nextNode.back = null;
+            head = nextNode;
+        }else if(nextNode == null){
+            currNode.back = null;
+            prevNode.next = null;
+        }else{
+            prevNode.next = nextNode;
+            nextNode.back = prevNode;
+            currNode.next = null;
+            currNode.back = null;
+        }
+        return head;
+    }
+
+
+
 }
