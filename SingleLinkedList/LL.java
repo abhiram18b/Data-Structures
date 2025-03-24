@@ -196,6 +196,7 @@ class LL{
             if(count == pos-1){ //pos-1 allows us to stay at one node before insert position,which makes insertion easy
                 newNode.next = currNode.next;
                 currNode.next = newNode;
+                break;
             }
             currNode = currNode.next;
         }
